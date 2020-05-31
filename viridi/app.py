@@ -13,4 +13,4 @@ API = Api(_app)
 DISPATCHER = PathInfoDispatcher({'/': _app})
 SERVER = WSGIServer(('0.0.0.0', PORT), DISPATCHER)
 
-API.add_resource(CityData, '/')
+API.add_resource(CityData, '/data')

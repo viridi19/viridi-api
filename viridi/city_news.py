@@ -11,7 +11,7 @@ class CityNews(Resource):
     def get():
         res = ''
         if not MOCK:
-            city = request.form['city']
+            city = request.args.get('city')
             news_res = query_news(city)
             _url = news_res["url"]
             nlu_res = query_category(_url)

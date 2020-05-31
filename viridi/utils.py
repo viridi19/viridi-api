@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-MOCKED = False
+MOCKED = True
 VALID_WORDS = ["corona", "covid", "morte", "pandemia", "mascara", "covid19", "covid-19", "hospitais", "pulmão", "pulmões", "coronavírus", "mortes", "distanciamento"]
 INVALID_WORDS = ["treino", "treinos", "futebol", "bola", "jogador", "jogadores", "jogos"]
 
@@ -23,7 +23,7 @@ def query_news(city):
     if not MOCKED:
         response = requests.get(url).json()
     else:
-        with open("./news_example.json") as f:
+        with open("/usr/src/app/viridi/news_example.json") as f: #/usr/src/app/viridi/news_example.json for docker
             response = json.load(f)
 
     articles = response["articles"]
@@ -31,13 +31,15 @@ def query_news(city):
 
     for article in sorted_articles:
         if __valid_new(article):
-            n_res["filled"] = False
+            n_res["filled"] = True
             n_res["author"] = article["author"]
             n_res["title"] = article["title"]
             n_res["description"] = article["description"]
             n_res["url"] = article["url"]
             n_res["urlToImage"] = article["urlToImage"]
             n_res["publishedAt"] = article["publishedAt"]
+
+    
 
     return n_res
 

@@ -1,6 +1,14 @@
+import json
+
+from viridi.resources.climatic_similarity import CLIMATIC_SIMILARITY
+from viridi.resources.anomaly_humid_points import ANOMALY_HUMID
+from viridi.resources.anomaly_prec_points import ANOMALY_PREC
+from viridi.resources.anomaly_temp_points import ANOMALY_TEMP
+
 class RealData:
-    def __init__(self, city):
+    def __init__(self, city, city2=None):
         self.city = city
+        self.city2 = city2
 
     def get_analisys(self):
         cities = self._robles_analisys()
@@ -55,6 +63,25 @@ class RealData:
         }
     }
 
+    def _climatic_similarities(self):
+        city1 = self.city
+        city2 = self.city2
+
+        results = CLIMATIC_SIMILARITY[city1][city2]
+
+        # insert results to city1
+        results[city1] = ANOMALY_TEMP[city1]
+        results[city1].update(ANOMALY_HUMID[city1])
+        results[city1].update(ANOMALY_PREC[city1])
+
+        # insert results to city2
+        results[city2] = ANOMALY_TEMP[city2]
+        results[city2].update(ANOMALY_HUMID[city2])
+        results[city2].update(ANOMALY_PREC[city2])
+
+        return results
+
+
     @staticmethod
     def _jadson_analisys():
         return {
@@ -75,3 +102,4 @@ class RealData:
                 "date_range": ["2020-01-04", "2020-01-05", "2020-01-06", "2020-01-07"]
             }
         }
+

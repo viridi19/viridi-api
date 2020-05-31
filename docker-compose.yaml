@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  controller:
+    restart: always
+    image: viridi/api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:8080
+
+networks:
+  local-network:
+    driver: bridge

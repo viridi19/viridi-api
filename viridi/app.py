@@ -4,6 +4,7 @@ from flask_restful import Api
 from cheroot.wsgi import Server as WSGIServer, PathInfoDispatcher
 
 from viridi.city_data import CityData
+from viridi.city_news import CityNews
 
 PORT = os.getenv('PORT', 5000)
 
@@ -13,4 +14,6 @@ API = Api(_app)
 DISPATCHER = PathInfoDispatcher({'/': _app})
 SERVER = WSGIServer(('0.0.0.0', PORT), DISPATCHER)
 
-API.add_resource(CityData, '/')
+API.add_resource(CityData, '/data')
+
+API.add_resource(CityNews, '/news')

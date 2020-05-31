@@ -1,6 +1,9 @@
 name: Build and Deploy to IKS
 
-on: push
+on: 
+  push:
+    branches:
+      - master
 
 # Environment variables available to all jobs and steps in this workflow
 env:
@@ -12,7 +15,7 @@ env:
   IMAGE_NAME: viridi-api
   IKS_CLUSTER: eric-learning
   DEPLOYMENT_NAME: viridi-api
-  PORT: 5001
+  PORT: 8080
 
 jobs:
   setup-build-publish-deploy:

@@ -1,14 +1,15 @@
 version: "3.7"
 
 services:
-  controller:
+  viridi-api:
     restart: always
-    image: viridi/api
+    image: viridi-api
+    command: watchmedo auto-restart -d . -p '*.py' --recursive -- gunicorn -w ${WORKERS:-1} -b 0.0.0.0:5000 main:app --timeout=1200  --log-level=${LOG_LEVEL:-debug}
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 5000:8080
+      - 5000:5000
 
 networks:
   local-network:

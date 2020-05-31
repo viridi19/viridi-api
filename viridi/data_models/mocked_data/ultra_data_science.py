@@ -1,3 +1,5 @@
+import random
+
 class MockedData:
 
     def __init__(self, city):
@@ -27,5 +29,13 @@ class MockedData:
             'city2':{
                 'name': 'Cracolandia',
                 'cases': 111222
+            }
+        }
+
+
+    def climatic_time_series(self):
+        self.climatic_data = {
+            'city1': {
+                'temp': random
             }
         }

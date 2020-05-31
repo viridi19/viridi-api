@@ -4,3 +4,4 @@ cheroot==8.3.0
 gunicorn==19.9.0
 requests==2.23.0
 Flask-Cors==3.0.7
+numpy==1.18.4

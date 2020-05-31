@@ -1,4 +1,12 @@
+# import json
+
 from flask_restful import abort
+
+# from viridi.resources.anomaly_humid_points import ANOMALY_HUMID
+# from viridi.resources.anomaly_prec_points import ANOMALY_PREC
+# from viridi.resources.anomaly_temp_points import ANOMALY_TEMP
+# from viridi.resources.climatic_similarity import CLIMATIC_SIMILARITY
+
 
 class MockedData:
     def __init__(self, city):
@@ -106,9 +114,9 @@ class MockedData:
         }
         return data 
 
-    def _jadson_analisys(self, city1, city2):
-        # Algorith
-        data = {
+    @staticmethod
+    def _jadson_analisys():
+        return {
             "similarity_rate_temp": 0.8, # similaridade geral entre as series temporais de temp
             "similarity_rate_humid": 0.85, # similaridade geral entre as series temporais de humid
             "city1": {
@@ -126,7 +134,6 @@ class MockedData:
                 "date_range": ["2020-01-04", "2020-01-05", "2020-01-06", "2020-01-07"]
             }
         }
-        return data
 
     def _find_coord(self, city):
         coords = self.coordinates['data']

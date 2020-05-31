@@ -5,7 +5,6 @@ from cheroot.wsgi import Server as WSGIServer, PathInfoDispatcher
 
 from viridi.city_data import CityData
 from viridi.city_news import CityNews
-from viridi.climatic_events import ClimaticEvents
 
 PORT = os.getenv('PORT', 5000)
 
@@ -18,6 +17,3 @@ SERVER = WSGIServer(('0.0.0.0', PORT), DISPATCHER)
 API.add_resource(CityData, '/data')
 
 API.add_resource(CityNews, '/news')
-
-# endpoint climatic data
-API.add_resource(ClimaticEvents, '/climatic')

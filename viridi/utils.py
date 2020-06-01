@@ -11,7 +11,7 @@ INVALID_WORDS = ["treino", "treinos", "futebol", "bola", "jogador", "jogadores",
 
 
 def query_category(url):
-  authenticator = IAMAuthenticator('V4YYANkyo2wQcdjBk0fhUCkG-cDthoAn5dHproydBakJ')
+  authenticator = IAMAuthenticator('<API_KEY>')
   natural_language_understanding = NaturalLanguageUnderstandingV1(version='2019-07-12',authenticator=authenticator)
 
   natural_language_understanding.set_service_url('https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/fe6a1388-3862-495d-bde1-c51135a37fff')
@@ -27,7 +27,7 @@ def query_category(url):
 
 def query_news(city):
     city = city.strip()
-    url = (f'https://newsapi.org/v2/everything?domains=terra.com.br,uol.com.br,globo&q={city}&pageSize=12&apiKey=5c3349b9af944d3a8838be33a30ca9e8')
+    url = (f'https://newsapi.org/v2/everything?domains=terra.com.br,uol.com.br,globo&q={city}&pageSize=12&apiKey=<API_KEY>')
 
     response = ''
     n_res = {
